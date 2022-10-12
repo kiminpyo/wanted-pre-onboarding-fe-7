@@ -4,7 +4,7 @@ import ListItem from "./ListItem";
 const Lists = ({ todoData, setTodoData }) => {
     console.log(todoData);
     if (todoData.length < 1) {
-        return <div>데이터 빔 </div>;
+        return <div>내용이 없음 </div>;
     } else {
         return (
             <div>

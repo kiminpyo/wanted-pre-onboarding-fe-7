@@ -40,7 +40,7 @@ const ListItem = ({ todoData, setTodoData, id, userId, isCompleted, todo }) => {
                 console.log(id);
                 const request = await axiosInstance.delete(`/todos/${id}`);
                 let newTodoData = todoData.filter((item) => item.id !== id);
-                setTodoData(() => []);
+                setTodoData(newTodoData);
             } catch (err) {
                 console.error(err);
             }

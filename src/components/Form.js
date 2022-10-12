@@ -22,8 +22,9 @@ const Form = ({ todoData, setTodoData }) => {
                         },
                     }
                 );
-
+                    content.setInputValue("")
                 setTodoData(() => [...todoData, result.data]);
+            
             } catch (err) {
                 console.error(err);
             }

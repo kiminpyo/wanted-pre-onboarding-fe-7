@@ -40,14 +40,14 @@ function SignupPage(props) {
            <div>
             <form onSubmit={onSubmit}>
                 <input
-                    type='text'
-                    name='login'
+                    type='id'
+                    name='id'
                     value={id.inputValue}
                     onChange={id.onChange}
                 />
-                <label htmlFor='login'>아이디</label>
+                <label htmlFor='id'>아이디</label>
                 <input
-                    type='text'
+                    type='password'
                     name='password'
                     value={password.inputValue}
                     onChange={password.onChange}

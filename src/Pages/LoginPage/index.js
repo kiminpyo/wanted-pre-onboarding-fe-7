@@ -4,12 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../config";
 import { useInput } from "../../hooks/useInput";
 
-function LoginPage({user,setUser}) {
-
+function LoginPage() {
     const navigate = useNavigate();
     const id = useInput("");
     const password = useInput("");
-    
+
     const onSubmit = (e) => {
         e.preventDefault();
         const fetchLogin = async () => {
@@ -19,30 +18,27 @@ function LoginPage({user,setUser}) {
                     password: password.inputValue,
                 });
                 window.localStorage.setItem("token", request.data.access_token);
-
-                setUser(request.data.access_token)
-                navigate('/todo')
+                navigate("/todo");
             } catch (err) {
                 console.error(err);
             }
-
         };
 
         fetchLogin();
     };
-  
+
     return (
         <div>
             <form onSubmit={onSubmit}>
                 <input
-                    type='text'
+                    type='id'
                     name='login'
                     value={id.inputValue}
                     onChange={id.onChange}
                 />
                 <label htmlFor='login'>아이디</label>
                 <input
-                    type='text'
+                    type='password'
                     name='password'
                     value={password.inputValue}
                     onChange={password.onChange}
