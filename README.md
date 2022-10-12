@@ -50,7 +50,7 @@
 - `npm run start`
 
 ## 데모영상
-
+https://user-images.githubusercontent.com/93189402/195337392-e675ee47-fb18-4b6a-8cdb-47d91efcc3b0.mp4
 
 ## 사용한 라이브러리 
 *(기능구현에 직접적으로 연관된 라이브러리 사용은 허용되지 않습니다.(React-Query 등))*
