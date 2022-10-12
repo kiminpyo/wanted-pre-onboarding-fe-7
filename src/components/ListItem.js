@@ -4,6 +4,7 @@ import { axiosInstance } from "../apis/axios";
 import { useInput } from "../hooks/useInput";
 
 const ListItem = ({ todoData, setTodoData, id, userId, isCompleted, todo }) => {
+    const token = window.localStorage.getItem("token");
     const value = useInput(todo);
     const [edit, setEdit] = useState(false);
     const [complete, setComplete] = useState(isCompleted);
@@ -12,10 +13,18 @@ const ListItem = ({ todoData, setTodoData, id, userId, isCompleted, todo }) => {
         e.preventDefault();
         try {
             const editTodoData = async () => {
-                const request = await axiosInstance.put(`/todos/${id}`, {
-                    todo: value.inputValue,
-                    isCompleted: complete,
-                });
+                const request = await axiosInstance.put(
+                    `/todos/${id}`,
+                    {
+                        todo: value.inputValue,
+                        isCompleted: complete,
+                    },
+                    {
+                        Headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
             };
             editTodoData();
             setEdit(false);
@@ -34,11 +43,16 @@ const ListItem = ({ todoData, setTodoData, id, userId, isCompleted, todo }) => {
     const checked = (e) => {
         setComplete((prev) => !prev);
     };
-    const deleteHandler = () => {
+    const deleteHandler = (e) => {
+        e.preventDefault();
         const deleteTodaData = async () => {
             try {
                 console.log(id);
-                const request = await axiosInstance.delete(`/todos/${id}`);
+                const request = await axiosInstance.delete(`/todos/${id}`, {
+                    Headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
                 let newTodoData = todoData.filter((item) => item.id !== id);
                 setTodoData(newTodoData);
             } catch (err) {
@@ -85,7 +99,9 @@ const ListItem = ({ todoData, setTodoData, id, userId, isCompleted, todo }) => {
                     <div>{todo}</div>
                     <div>{isCompleted ? "했다" : "안했다 "}</div>
                     <button onClick={() => setEdit(true)}>업데이트</button>
-                    <button onClick={deleteHandler}>삭제</button>
+                    <form onSubmit={deleteHandler}>
+                        <button type='submit'>삭제</button>
+                    </form>
                 </div>
             </div>
         );

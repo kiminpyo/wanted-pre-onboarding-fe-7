@@ -32,24 +32,31 @@ function LoginPage() {
         return <Navigate to='/todo' />;
     }
     return (
-        <div>
+        <div style={{ textAlign: "center", marginTop: "100px" }}>
             <form onSubmit={onSubmit}>
-                <input
-                    type='id'
-                    name='login'
-                    value={id.inputValue}
-                    onChange={id.onChange}
-                />
-                <label htmlFor='login'>아이디</label>
-                <input
-                    type='password'
-                    name='password'
-                    value={password.inputValue}
-                    onChange={password.onChange}
-                />
-                <label htmlFor='password'>비밀번호</label>
+                <div>
+                    <label htmlFor='login'>아이디</label>
+                    <input
+                        type='id'
+                        name='login'
+                        value={id.inputValue}
+                        onChange={id.onChange}
+                    />
+                </div>
+                <div>
+                    {" "}
+                    <label htmlFor='password'>비밀번호</label>
+                    <input
+                        type='password'
+                        name='password'
+                        value={password.inputValue}
+                        onChange={password.onChange}
+                    />
+                </div>
+                <br />
                 <button type='submit'>로그인</button>
             </form>
+            if you don't have ? <br />
             <button onClick={() => navigate("/signup")}>회원가입</button>
         </div>
     );
