@@ -26,7 +26,7 @@ function SignupPage(props) {
                     password: password.inputValue,
                 });
               
-                navigate('/login')
+                navigate('/')
             } catch (err) {
                 console.error(err)
                 return alert(err.response.data.message)
