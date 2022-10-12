@@ -3,23 +3,7 @@
 <details>
 <summary>접기/펼치기 버튼</summary>
 <div markdown="1">
-
-src
-├── apis
-│ └── axios
-├── components
-│ ├── axios
-│ ├── test
-│ └── validation
-├── hooks
-├── pages
-│ ├── LoginPage
-│ ├── MainPage
-│ └── SignupPage
-├── App.js
-├── App.css
-├── index.js
-└── ...etc
+<img src="https://user-images.githubusercontent.com/93189402/195268369-3e6806f7-cec1-4e49-92de-01fcab727fec.png"/>
 
 </div>
 </details>
