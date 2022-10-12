@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../config";
 import { useInput } from "../../hooks/useInput";
 
 function LoginPage() {
+    const token = window.localStorage.getItem("token");
+
     const navigate = useNavigate();
     const id = useInput("");
     const password = useInput("");
@@ -26,7 +28,9 @@ function LoginPage() {
 
         fetchLogin();
     };
-
+    if (token) {
+        return <Navigate to='/todo' />;
+    }
     return (
         <div>
             <form onSubmit={onSubmit}>
