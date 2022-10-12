@@ -1,8 +1,9 @@
 ## 디렉토리 구조
-```
+
 <details>
 <summary>접기/펼치기 버튼</summary>
 <div markdown="1">
+```
 src
 ├── apis
 │     └── axios
@@ -19,12 +20,11 @@ src
 ├── App.css
 ├── index.js
 └── ...etc
-
+```
 </div>
 </details>
 
-
-``` 
+```
 ## 진행 방법
 
 -   함수 컴포넌트 사용
@@ -42,3 +42,4 @@ src
 HTTP Client 라이브러리(Axios 등)
 스타일링 관련 라이브러리(Sass, Styled Components, Emotion 등)
 아이콘 등 UI 관련 라이브러리(Font-Awesome, React-Icons, Bootstrap 등)
+```
