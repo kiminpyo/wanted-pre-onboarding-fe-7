@@ -13,16 +13,36 @@ import SignupPage from "./Pages/SingupPage";
 import Spinner from "./components/Spinner";
 import NoMatch from "./Pages/404Page";
 import reducer from "./reducer/login";
+import axios from "axios";
+import { BASE_URL } from "./config";
+import { FAILURE, LOADING, SUCCESS } from "./action/type";
+
 export const stateContext = createContext();
 export const dispatchContext = createContext();
-
 function App() {
-    const token = window.localStorage.getItem("token");
-    const [loginData, dispatch] = useReducer(reducer, []);
+    const [data, dispatch] = useReducer(reducer, []);
 
+    const onLogin = (email, password) => {
+        const fetchUser = async () => {
+            dispatch({ type: LOADING });
+            try {
+                const request = await axios.post(`${BASE_URL}/auth/signin`, {
+                    email: email,
+                    password: password,
+                });
+                dispatch({ type: SUCCESS, payload: request.data });
+            } catch (err) {
+                dispatch({ type: FAILURE, payload: err });
+            }
+        };
+        fetchUser();
+    };
     return (
-        <stateContext.Provider value={loginData}>
-            <dispatchContext.Provider value={dispatch}>
+        <stateContext.Provider value={data}>
+            <dispatchContext.Provider
+                value={{
+                    onLogin,
+                }}>
                 <BrowserRouter>
                     <Routes>
                         <Route

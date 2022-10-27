@@ -5,8 +5,8 @@ const token = window.localStorage.getItem("token");
 
 export const axiosInstance = new axios.create({
     baseURL: BASE_URL,
-    headers: {
-        Authorization: `Bearer ${token}`,
-    },
 });
 
+axios.defaults.headers.common["Authorization"] = token
+    ? `Bearer ${token}`
+    : null;

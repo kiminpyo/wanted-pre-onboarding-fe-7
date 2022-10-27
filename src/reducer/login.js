@@ -1,10 +1,16 @@
-import { INIT } from "../action/type";
-
-const reducer = (state = { loginData: [] }, action) => {
+import { FAILURE, LOADING, SUCCESS } from "../action/type";
+const initialState = {};
+const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case INIT: {
+        case LOADING: {
+            return { ...state, loginSuccess: false };
+        }
+        case SUCCESS: {
             console.log(action);
-            return { ...state, loginData: action.payload };
+            return { ...state, loginSuccess: action.payload };
+        }
+        case FAILURE: {
+            return { ...state, loginSuccess: false };
         }
         default:
             return state;

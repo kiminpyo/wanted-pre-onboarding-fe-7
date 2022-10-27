@@ -1,4 +1,4 @@
-export const INIT = "INIT";
-export const CREATE = "CREATE";
-export const EDIT = "EDIT";
+export const LOADING = "LOADING";
+export const SUCCESS = "SUCCESS";
+export const FAILURE = "FAILURE";
 export const DELETE = "DELETE";

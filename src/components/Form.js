@@ -11,20 +11,11 @@ const Form = ({ todoData, setTodoData }) => {
         e.preventDefault();
         const fetchTodoData = async () => {
             try {
-                const result = await axios.post(
-                    `${BASE_URL}/todos`,
-                    {
-                        todo: content.inputValue,
-                    },
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
-                    content.setInputValue("")
+                const result = await axios.post(`${BASE_URL}/todos`, {
+                    todo: content.inputValue,
+                });
+                content.setInputValue("");
                 setTodoData(() => [...todoData, result.data]);
-            
             } catch (err) {
                 console.error(err);
             }
@@ -35,11 +26,11 @@ const Form = ({ todoData, setTodoData }) => {
         <div>
             <form onSubmit={submitTodo}>
                 <input
-                    type='text'
+                    type="text"
                     value={content.inputValue}
                     onChange={content.onChange}
                 />
-                <button type='submit'>입력</button>
+                <button type="submit">입력</button>
             </form>
         </div>
     );
