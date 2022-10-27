@@ -7,6 +7,10 @@ const reducer = (state = initialState, action) => {
         }
         case SUCCESS: {
             console.log(action);
+            window.localStorage.setItem(
+                "token",
+                action.payload["access_token"]
+            );
             return { ...state, loginSuccess: action.payload };
         }
         case FAILURE: {

@@ -1,25 +1,18 @@
-import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useRef } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-
 import { dispatchContext, stateContext } from "../../App";
-
-import { BASE_URL } from "../../config";
 import { useInput } from "../../hooks/useInput";
-
+const axios = require("axios");
 function LoginPage() {
     const { onLogin } = useContext(dispatchContext);
     const data = useContext(stateContext);
     const token = window.localStorage.getItem("token");
-    useEffect(() => {
-        if (data.length === 0) {
-            return;
-        }
-    }, []);
     const navigate = useNavigate();
     const id = useInput("");
     const password = useInput("");
-
+    const i = useRef();
+    const p = useRef();
+    console.log(i.current?.value, p.current?.value);
     const onSubmit = (e) => {
         e.preventDefault();
         onLogin(id.inputValue, password.inputValue);
@@ -38,6 +31,7 @@ function LoginPage() {
                             name="login"
                             value={id.inputValue}
                             onChange={id.onChange}
+                            ref={i}
                         />
                     </div>
                     <div>
@@ -48,6 +42,7 @@ function LoginPage() {
                             name="password"
                             value={password.inputValue}
                             onChange={password.onChange}
+                            ref={p}
                         />
                     </div>
                     <br />

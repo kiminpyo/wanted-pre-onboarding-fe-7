@@ -24,13 +24,14 @@ function MainPage() {
                     Authorization: `Bearer ${token}`,
                 },
             });
+            console.log(result);
             setTodoData(result.data);
         } catch (err) {
             console.error(err);
         }
     };
     if (!token) {
-        return <Navigate to='/' />;
+        return <Navigate to="/" />;
     }
     return (
         <div>
