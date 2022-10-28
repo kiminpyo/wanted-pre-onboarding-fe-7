@@ -1,22 +1,21 @@
-import React, { useContext, useRef } from "react";
+import React, { useCallback, useContext } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { dispatchContext, stateContext } from "../../App";
 import { useInput } from "../../hooks/useInput";
-const axios = require("axios");
+
 function LoginPage() {
     const { onLogin } = useContext(dispatchContext);
     const data = useContext(stateContext);
+    console.log(data);
     const token = window.localStorage.getItem("token");
     const navigate = useNavigate();
     const id = useInput("");
     const password = useInput("");
-    const i = useRef();
-    const p = useRef();
-    console.log(i.current?.value, p.current?.value);
-    const onSubmit = (e) => {
+
+    const onSubmit = useCallback((e) => {
         e.preventDefault();
         onLogin(id.inputValue, password.inputValue);
-    };
+    });
 
     if (token) {
         return <Navigate to="/todo" />;
@@ -27,22 +26,22 @@ function LoginPage() {
                     <div>
                         <label htmlFor="login">아이디</label>
                         <input
-                            type="id"
-                            name="login"
+                            type="email"
+                            name="email"
+                            required
                             value={id.inputValue}
                             onChange={id.onChange}
-                            ref={i}
                         />
                     </div>
                     <div>
                         {" "}
                         <label htmlFor="password">비밀번호</label>
                         <input
+                            required
                             type="password"
                             name="password"
                             value={password.inputValue}
                             onChange={password.onChange}
-                            ref={p}
                         />
                     </div>
                     <br />

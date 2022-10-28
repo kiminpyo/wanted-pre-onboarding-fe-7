@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import Form from "../../components/Form";
 import Lists from "../../components/Lists";
 import { BASE_URL } from "../../config";
 import axios from "axios";
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import { getTodo } from "../../apis/axios";
 
-function MainPage() {
+const MainPage = memo(() => {
     const navigate = useNavigate();
     const token = window.localStorage.getItem("token");
     const [todoData, setTodoData] = useState([]);
@@ -15,21 +16,18 @@ function MainPage() {
         navigate("/");
     };
     useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const result = await getTodo();
+                console.log(result);
+                setTodoData(result.data);
+            } catch (err) {
+                console.error(err);
+            }
+        };
         fetchData();
     }, []);
-    const fetchData = async () => {
-        try {
-            const result = await axios.get(`${BASE_URL}/todos`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            console.log(result);
-            setTodoData(result.data);
-        } catch (err) {
-            console.error(err);
-        }
-    };
+
     if (!token) {
         return <Navigate to="/" />;
     }
@@ -40,6 +38,6 @@ function MainPage() {
             <Form setTodoData={setTodoData} todoData={todoData} />
         </div>
     );
-}
+});
 
 export default MainPage;

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Signup } from "../../apis/axios";
 import { BASE_URL } from "../../config";
 import { useInput } from "../../hooks/useInput";
 
@@ -13,8 +14,8 @@ function SignupPage(props) {
     useEffect(() => {
         if (id.inputValue.includes("@") && password.inputValue.length >= 8) {
             setButtonVisible(true);
-        }else{
-            setButtonVisible(false)
+        } else {
+            setButtonVisible(false);
         }
     }, [id, password]);
 
@@ -22,11 +23,10 @@ function SignupPage(props) {
         e.preventDefault();
         const fetchLogin = async () => {
             try {
-                const request = await axios.post(`${BASE_URL}/auth/signup`, {
+                const request = await Signup({
                     email: id.inputValue,
                     password: password.inputValue,
                 });
-
                 navigate("/");
             } catch (err) {
                 console.error(err);
@@ -37,39 +37,41 @@ function SignupPage(props) {
     };
 
     return (
-        <div style={{textAlign:'center',  marginTop:'100px' }}>
+        <div style={{ textAlign: "center", marginTop: "100px" }}>
             <div>
                 <form onSubmit={onSubmit}>
                     <div>
                         {" "}
-                        <label htmlFor='id'>아이디</label>
+                        <label htmlFor="email">아이디</label>
                         <input
-                            type='id'
-                            name='id'
-                            value={id.inputValue}
+                            required
+                            type="email"
+                            name="email"
+                            value={""}
                             onChange={id.onChange}
                         />
                     </div>
                     <div>
                         {" "}
-                        <label htmlFor='password'>비밀번호</label>
+                        <label htmlFor="password">비밀번호</label>
                         <input
-                            type='password'
-                            name='password'
-                            value={password.inputValue}
+                            required
+                            type="password"
+                            name="password"
+                            value={""}
                             onChange={password.onChange}
                         />
                     </div>
                     <br />
                     {buttonVisible ? (
-                        <button type='submit'>등록</button>
+                        <button type="submit">등록</button>
                     ) : (
-                        <button disabled type='submit'>
+                        <button disabled type="submit">
                             등록
                         </button>
                     )}
                 </form>
-                <button onClick={() => window.history.back()}>뒤로</button>
+                <button onClick={() => navigate(-1)}>뒤로</button>
             </div>
         </div>
     );

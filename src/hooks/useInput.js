@@ -6,5 +6,5 @@ export function useInput(initialValue) {
         setInputValue(e.target.value);
     };
 
-    return { inputValue, onChange,setInputValue };
+    return { inputValue, onChange, setInputValue };
 }

@@ -1,12 +1,20 @@
-import axios from "axios";
-import { BASE_URL } from "../config";
+import axiosInstance from "./intercepter";
 
-const token = window.localStorage.getItem("token");
+export const Signup = (data) =>
+    axiosInstance({ method: "POST", url: "/auth/signup", data });
 
-export const axiosInstance = new axios.create({
-    baseURL: BASE_URL,
-});
+export const Signin = (data) =>
+    axiosInstance({ method: "POST", url: "/auth/signin", data });
 
-axios.defaults.headers.common["Authorization"] = token
-    ? `Bearer ${token}`
-    : null;
+export const createTodo = (data) => {
+    console.log(data);
+    return axiosInstance({ method: "POST", url: "/todos", data });
+};
+
+export const updateTodo = (id, data) =>
+    axiosInstance({ method: "PUT", url: `/todos/${id}`, data });
+
+export const deleteTodo = (id) =>
+    axiosInstance({ method: "DELETE", url: `/todos/${id}` });
+
+export const getTodo = () => axiosInstance({ method: "GET", url: "/todos" });

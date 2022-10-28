@@ -1,26 +1,24 @@
 import axios from "axios";
-import React from "react";
+import { memo } from "react";
+import { createTodo } from "../apis/axios";
 import { BASE_URL } from "../config";
 import { useInput } from "../hooks/useInput";
 
 const Form = ({ todoData, setTodoData }) => {
-    const token = window.localStorage.getItem("token");
     const content = useInput("");
 
     const submitTodo = (e) => {
-        e.preventDefault();
         const fetchTodoData = async () => {
             try {
-                const result = await axios.post(`${BASE_URL}/todos`, {
-                    todo: content.inputValue,
-                });
-                content.setInputValue("");
+                const result = await createTodo({ todo: content.inputValue });
                 setTodoData(() => [...todoData, result.data]);
+                content.setInputValue("");
             } catch (err) {
                 console.error(err);
             }
         };
         fetchTodoData();
+        e.preventDefault();
     };
     return (
         <div>

@@ -1,8 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import ListItem from "./ListItem";
 
-const Lists = ({ todoData, setTodoData }) => {
-    console.log(todoData);
+const Lists = memo(({ todoData, setTodoData }) => {
     if (todoData.length < 1) {
         return <div>내용이 없음 </div>;
     } else {
@@ -10,7 +9,6 @@ const Lists = ({ todoData, setTodoData }) => {
             <div>
                 {todoData.map((item, i) => (
                     <ListItem
-                       
                         key={item.id}
                         todoData={todoData}
                         id={item.id}
@@ -23,6 +21,6 @@ const Lists = ({ todoData, setTodoData }) => {
             </div>
         );
     }
-};
+});
 
 export default Lists;

@@ -4,7 +4,7 @@ import App from "../../App";
 import NoMatch from ".";
 import LoginPage from "../LoginPage/index";
 
-test("from landing to main", () => {
+test.only("from landing to main", () => {
     // render()
     expect(1 + 1).toEqual(2);
 });

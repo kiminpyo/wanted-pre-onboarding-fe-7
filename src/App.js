@@ -16,6 +16,7 @@ import reducer from "./reducer/login";
 import axios from "axios";
 import { BASE_URL } from "./config";
 import { FAILURE, LOADING, SUCCESS } from "./action/type";
+import { Signin } from "./apis/axios";
 
 export const stateContext = createContext();
 export const dispatchContext = createContext();
@@ -26,10 +27,7 @@ function App() {
         const fetchUser = async () => {
             dispatch({ type: LOADING });
             try {
-                const request = await axios.post(`${BASE_URL}/auth/signin`, {
-                    email: email,
-                    password: password,
-                });
+                const request = await Signin({ email, password });
                 dispatch({ type: SUCCESS, payload: request.data });
             } catch (err) {
                 dispatch({ type: FAILURE, payload: err });
@@ -37,6 +35,7 @@ function App() {
         };
         fetchUser();
     };
+
     return (
         <stateContext.Provider value={data}>
             <dispatchContext.Provider
