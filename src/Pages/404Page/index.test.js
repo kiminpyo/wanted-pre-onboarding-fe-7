@@ -1,10 +1,10 @@
-import { render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import App from "../../App";
+import { render } from "@testing-library/react";
 import NoMatch from ".";
-import LoginPage from "../LoginPage/index";
 
-test.only("from landing to main", () => {
-    // render()
-    expect(1 + 1).toEqual(2);
+test("from landing to main", () => {
+    render(<NoMatch />);
+
+    
+
+
 });

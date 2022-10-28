@@ -1,7 +1,4 @@
-import axios from "axios";
-import { memo } from "react";
 import { createTodo } from "../apis/axios";
-import { BASE_URL } from "../config";
 import { useInput } from "../hooks/useInput";
 
 const Form = ({ todoData, setTodoData }) => {

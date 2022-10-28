@@ -1,9 +1,7 @@
 import React, { memo, useEffect, useState } from "react";
 import Form from "../../components/Form";
 import Lists from "../../components/Lists";
-import { BASE_URL } from "../../config";
-import axios from "axios";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { getTodo } from "../../apis/axios";
 
 const MainPage = memo(() => {
